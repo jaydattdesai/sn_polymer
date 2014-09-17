@@ -1,0 +1,38 @@
+ <script src="../components/platform/platform.js">
+  </script>
+<link rel="import" href="../core-menu-button/core-menu-button.html">
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../core-item/core-item.html">
+
+<polymer-element name="my-element">
+
+  <template>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_menu_button {
+        left: 0px;
+        top: 0px;
+        position: absolute;
+      }
+    </style>
+    <core-menu-button icon="more-vert" selected="0" id="core_menu_button">
+      <core-item id="core_item" icon="content-cut" label="Cut" horizontal center layout active></core-item>
+      <core-item id="core_item1" icon="content-copy" label="Copy" horizontal center layout></core-item>
+      <core-item id="core_item2" icon="content-paste" label="Paste" horizontal center layout></core-item>
+    </core-menu-button>
+  </template>
+
+  <script>
+
+    Polymer('my-element', {
+      
+    });
+
+  </script>
+
+</polymer-element>

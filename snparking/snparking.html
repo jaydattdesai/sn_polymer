@@ -1,0 +1,289 @@
+ <script src="../bower_components/platform/platform.js">
+  </script>
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../bower_components/core-icon/core-icon.html">
+<link rel="import" href="../bower_components/core-item/core-item.html">
+<link rel="import" href="../bower_components/core-popup-menu/core-popup-menu.html">
+
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
+<link href="../bower_components/paper-menu-button/paper-menu-button.html" rel="import">
+<link href="../bower_components/paper-menu-button/paper-menu-button.html" rel="import">
+<link href="../bower_components/paper-shadow/paper-shadow.html" rel="import">
+ 
+<polymer-element name="my-element">
+ 
+  <template>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #paper_button {
+        left: 750px;
+        top: 20px;
+        position: absolute;
+        color: #ffffff;
+        background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#9A9B9C),color-stop(1,#9C9D9E));
+        background: -moz-linear-gradient(center bottom , #9a9b9c 0%, #9c9d9e 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+      }
+      #paper_button1 {
+        left: 900px;
+        top: 20px;
+        position: absolute;
+        color: #ffffff;
+        background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#0072BA),color-stop(1,#197CC6)) !important;
+        background: -moz-linear-gradient(center bottom , #0076bf 0%, #0c78c1 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+      }
+
+      #paper_button2 {
+        left: 900px;
+        top: 190px;
+        /*height: 50px;*/
+        /*width: 100px;*/
+        position: absolute;
+        color: #ffffff;
+        font-size: 22px;
+        background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#0072BA),color-stop(1,#197CC6)) !important;
+        background: -moz-linear-gradient(center bottom , #0076bf 0%, #0c78c1 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+      }
+      #paper_tabs {
+        width: 500px;
+        color: rgb(0, 0, 0);
+        box-shadow: rgba(0, 0, 0, 0) 0px 3px 2px;
+        left: 250px;
+        top: 10px;
+        position: absolute;
+        background-color: #ffffff;
+      }
+      #core_icon {
+        left: 70px;
+        top: 20px;
+        position: relative;
+        height: 46px;
+        width: 140px;
+      }
+
+      #core_language_icon {
+        left: 900px;
+        top: 15px;
+        position: relative;
+        height: 12px;
+        width: 18px;
+      }
+
+       #core_language_icon_2 {
+       /* left: 900px;
+        top: 45px;
+        position: relative;*/
+        height: 12px;
+        width: 18px;
+      }
+
+       #core_icon1 {
+        left: -10px;
+        top: 90px;
+        position: absolute;
+        width: 1310px;
+        height: 350px;
+      }
+       #core_input {
+        padding: 15px;
+        left: 270px;
+        top: 190px;
+        position: absolute;
+        width: 600px;
+        height: 50px;
+        z-index: 1;
+        opacity: 0.9;
+        background-color: rgb(255, 255, 255);
+        /*border: 10px solid;*/
+        border-radius: 7px;
+        font-size: 14px;
+      }
+
+      /* #core_menu {
+        font-size: 16px;
+        left: 230px;
+        top: 160px;
+        position: absolute;
+      }*/
+
+      #core_popup_menu1,
+      #core_popup_menu2,
+      #core_popup_menu_language{
+        top: 60px !important;
+      }
+
+      #core_popup_menu1::shadow #menu::shadow  { overflow: auto; }
+      #core_popup_menu2::shadow #menu::shadow  { overflow: auto; }
+      #core_popup_menu_language::shadow #menu::shadow  { overflow: auto; }
+
+      /**
+      for popup
+      */
+     .paper-menu-button-overlay-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: 3px;
+      background: #fff;
+      opacity: 0;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
+      width: 200px;      
+    }
+
+    .paper-menu-button-overlay-bg-lang {
+     
+     position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: 3px;
+      background: #fff;
+      opacity: 0;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
+      width: 80px;      
+    }
+    </style>
+
+    <!--
+    Logo
+    -->
+    <core-icon src="images/logo_parku.png" id="core_icon"></core-icon>
+   
+   <!--
+    Tab's
+   -->
+    <paper-tabs selected="0" selectedindex="0" id="paper_tabs">
+      
+      <paper-tab id="paper_tab1" on-mouseover="{{onTab1Click}}" active>Parking Seeker</paper-tab>
+      <paper-tab id="paper_tab2" on-mouseover="{{onTab2Click}}">Parking Owner</paper-tab>
+      <paper-tab id="paper_tab3">About Us</paper-tab>
+      <paper-tab id="paper_tab4">Login / Sign Up</paper-tab>
+      
+    </paper-tabs>
+    
+
+    <!--
+      Parking Seeker Menu
+    -->
+     <core-popup-menu id="core_popup_menu1" relatedTarget="{{$.paper_tab1}}" opened=false halign="{{halign}}" valign="{{valign}}" transition="paper-menu-button-transition-top-{{halign}}{{slow ? '-slow' : ''}}" 
+     >
+      <!-- <paper-shadow id="shadow" z="0" target="{{$.menu}}"></paper-shadow> -->
+      <div class="paper-menu-button-overlay-ink"></div>
+      <div id="overlayBg" class="paper-menu-button-overlay-bg"></div>
+      <content select="*"></content>
+      
+      <paper-item label="How it works"></paper-item>
+      <paper-item label="Our Mobile App"></paper-item>
+      <paper-item label="Airport Parking"></paper-item>
+      
+    </core-popup-menu>
+
+     <!--
+      Parking Owner Menu
+    -->
+     <core-popup-menu id="core_popup_menu2" relatedTarget="{{$.paper_tab2}}" opened=false halign="{{halign}}" valign="{{valign}}" transition="paper-menu-button-transition-top-{{halign}}{{slow ? '-slow' : ''}}" 
+     >
+      <!-- <paper-shadow id="shadow" z="0" target="{{$.menu}}"></paper-shadow> -->
+      <div class="paper-menu-button-overlay-ink"></div>
+      <div id="overlayBg" class="paper-menu-button-overlay-bg"></div>
+      <content select="*"></content>
+      
+      <paper-item label="How it works"></paper-item>
+      <paper-item label="Get Opener Technology"></paper-item>
+      
+    </core-popup-menu>
+
+    <!---
+    Button's
+    -->
+     <paper-button label="Contact Us" raisedbutton id="paper_button"></paper-button>
+    <paper-button label="Book Online" raisedbutton id="paper_button1"></paper-button>
+
+    <!--
+    Language selector
+    -->
+    <core-icon src="images/en.png" id="core_language_icon" on-mouseover="{{onLanguageClick}}"></core-icon>
+
+    <!--
+      Language selector popup
+    -->
+     <core-popup-menu id="core_popup_menu_language" relatedTarget="{{$.core_language_icon}}" opened=false halign="{{halign}}" valign="{{valign}}" transition="paper-menu-button-transition-top-{{halign}}{{slow ? '-slow' : ''}}" 
+     >
+      <!-- <paper-shadow id="shadow" z="0" target="{{$.menu}}"></paper-shadow> -->
+      <div class="paper-menu-button-overlay-ink"></div>
+      <div id="overlayBg_lang" class="paper-menu-button-overlay-bg paper-menu-button-overlay-bg-lang"></div>
+      <content select="*"></content>
+      
+      <paper-item icon="core_language_icon_2"></paper-item>      
+      <core-icon src="images/de.png" id="core_language_icon_2"></core-icon>
+      
+    </core-popup-menu>
+
+    <!--
+    The Big images
+    -->
+    <core-icon src="images/parking_lot_pic_of_cars.jpg" id="core_icon1"></core-icon>
+
+    <!--
+    Input text
+    -->
+    <input id="core_input" type="text" placeholder="" pattern=".*" min="" max="" step="" maxlength="" aria-label="Type something" aria-invalid="false" on-keypress="{{ keypressAction }}" on-change="{{ inputChangeAction }}" on-focus="{{ inputFocusAction }}" on-blur="{{ inputBlurAction }}">
+
+    <!--
+    Search Button
+    -->
+    <paper-button label="Search" raisedbutton id="paper_button2"></paper-button>
+
+   
+  </template>
+ 
+  <script>
+ 
+    Polymer('my-element', {
+      onTab1Click: function() {      
+        
+          this.$.core_popup_menu1.opened = true;        
+          this.$.core_popup_menu2.opened = false;        
+          this.$.core_popup_menu_language.opened = false;        
+        },
+        onTab2Click: function() {      
+          this.$.core_popup_menu2.opened = true;        
+          this.$.core_popup_menu1.opened = false; 
+          this.$.core_popup_menu_language.opened = false;               
+        },
+        onLanguageClick: function() {
+          this.$.core_popup_menu_language.opened = true;
+           this.$.core_popup_menu2.opened = false;        
+          this.$.core_popup_menu1.opened = false; 
+        }
+
+         
+
+      
+    });
+
+
+ 
+  </script>
+ 
+</polymer-element>
+
+ 
+
+
+
+<body style='font-family: sans-serif'>
+  <my-element></my-element>
+
+</body>
