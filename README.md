@@ -20,3 +20,5 @@
 6) node localserver.js
 
 7) http://localhost:8000
+
+8) login with: jaydatt/jaydatt
