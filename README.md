@@ -15,10 +15,8 @@
 
 # If you want to start with NodeJs server
 
-4) npm install express
+4) npm install 
 
-5) npm install morgan
+6) node localserver.js
 
-6) npm start
-
-7) http://localhost:5000
+7) http://localhost:8000
