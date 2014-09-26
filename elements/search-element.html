@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>	
+	
+	<link rel="import" href="../bower_components/polymer/polymer.html">	 
+	<link rel="import" href="../bower_components/font-roboto/roboto.html">	
+	<link rel="import" href="../bower_components/paper-input/paper-input.html">	
+	<link rel="import" href="../bower_components/core-ajax/core-ajax.html">	
+	<!-- <link href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html" rel="import">	 -->
+	<link href="../bower_components/paper-item/paper-item.html" rel="import">	
+	<link href="../bower_components/core-dropdown/core-dropdown.html" rel="import">	
+	
+	<style>
+  	body {
+	      font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	      margin: 0;
+	      background: #f1f1f1;
+	    }
+	    
+      	
+  	</style>
+</head>
+
+<polymer-element name="search-element" vertical layout>
+	<template>
+		<style type="text/css">
+			#core_dropdown{
+	      		/*top: 320px !important;*/
+	      	}
+		</style>
+		<style>
+		</style>
+		<paper-input id="searchParking" on-keyup="{{search_parking}}" on-keypress="{{keypress}}" on-keydown="{{keydown}}" label="Enter Name..."></paper-input>
+
+		 <core-ajax id ="searchAjax" url="http://127.0.0.1:8000/search" 
+		      params='{"alt":"json", "search":"{{searchValue}}"}'
+		      handleAs="json"></core-ajax>
+
+      	        
+      	<div>      
+         <core-dropdown id="core_dropdown" relatedTarget="{{$.searchParking}}"> 
+	         <core-menu>    
+	         <template id="listTemplate" repeat="{{location in locations}}">     
+		          <paper-item label="{{location}}"></paper-item>		         
+	          </template>
+	          </core-menu>
+         </core-dropdown>
+ 		</div>
+      
+	</template>
+
+	<script>
+	 Polymer('search-element', {	 
+
+	 	 searchValue : '',
+	 	 keypress : function(e) {
+	     	// if (true) {};(e.keyCode);
+     		this.searchValue = String.fromCharCode(e.keyCode);
+
+	     },
+	     keydown : function(e) {
+	     	if (e.keyCode == 8) {
+     			this.searchValue = this.searchValue.substring(0, this.searchValue.length - 1);     			
+     		}
+	     },
+	     search_parking: function(e) {	 	    		    	     	
+
+	     	var template = this.$.listTemplate;
+
+	     	var searchAjax = this.$.searchAjax;
+	     	var coreDropdown = this.$.core_dropdown;	     		
+	     	
+	     	searchAjax.addEventListener('core-response', function(e) {
+	     	coreDropdown.opened = false;     				
+			    this.locations = this.response.anArray;	
+								
+			    //reference: http://jsfiddle.net/falafelsoftware/8fa8g/
+				template.model = {
+						locations: 
+					   		this.response.anArray
+					   
+				};
+				
+				coreDropdown.style.height = (this.response.anArray.length * 48 ) + 'px';				
+			    coreDropdown.opened = true;     	
+			  });
+			  searchAjax.go();	
+			  
+			  
+	      },
+	      handleResponse : function(e) {
+	      	console.log(e);
+	      }
+	    
+	  });
+	 </script>
+
+</polymer-element>
+
+<body>
+	<search-element></search-element>
+</body>
+</html>
