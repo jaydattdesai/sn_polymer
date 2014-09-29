@@ -14,6 +14,7 @@
 		<link rel="import" href="../bower_components/core-icon/core-icon.html">
 		<link href="../bower_components/core-animated-pages/core-animated-pages.html" rel="import">
 		<link href="elements/search-element.html" rel="import">
+		<link href="elements/sn-maps-element.html" rel="import">
 
 		<style>
 	    body {
@@ -103,6 +104,7 @@
 		        font-size: 32px;
 		      }
 
+
 		      
 
 		       .next {
@@ -128,6 +130,10 @@
 		      paper-fab.blue {
 			      background: #5677fc;
 			    }
+
+			    #core_header_panel {
+			        background-color: rgb(255, 255, 255);
+			      }
 
 		</style>
 
@@ -156,7 +162,7 @@
 	              Profile
 	            </div>
 	          </div>
-	           <div class="tile2" hero-id="category-image" hero style="background-color:#3333CC;" layout vertical >
+	           <div class="tile2" hero-id="category-image" hero style="background-color:#3333CC;" layout vertical on-tap="{{transitionGK}}">
 	            <div class="tile-top" flex></div>
 	            <div class="tile-bottom" hero-id="footer" hero style="background-color:#333399;">
 	              General Knowledge
@@ -171,8 +177,8 @@
 	       <section layout vertical>
 
 	        <div class="top" hero-id="parkings" hero flex layout horizontal center center-justified>
-	          <div class="top-image" cross-fade></div>
-	          <search-element></search-element>
+	          <div class="top-image" cross-fade></div>	          
+	         	 <search-element></search-element>	   		  
 	        </div>
 	        <div class="bottom" hero-id="parkingFooter" hero cross-fade>
 	          <span cross-fade>Parkings</span>
@@ -208,13 +214,18 @@
 	        </div>
 	      </section>
 
+	       <!-- selection id = 3-->
+	      <section layout vertical>
+	      	<sn-maps-element></sn-maps-element>
+	      </section>
+
 	  </core-animated-pages>
 	</template>
 	<script>
 
 	  Polymer('topeka-rnd', {
 	    
-	     page: 0,
+	     page: 3,
 
 	      transitionParkings: function(e) {	      	
 	      	
@@ -229,6 +240,10 @@
 	       transitionProfile: function(e) {	      	
 	      
 	        this.page = 2;
+	      },
+	      transitionGK: function(e) {	      	
+	      
+	        this.page = 3;
 	      },
 
 	      transitionBack: function(e) {	      	
